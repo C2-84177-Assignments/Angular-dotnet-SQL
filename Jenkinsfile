@@ -8,7 +8,7 @@ pipeline {
         DOCKER_HUB_CREDENTIALS = credentials('docker')
         FRONTEND_IMAGE = 'vaibhavnitor/frontend-image'
         BACKEND_IMAGE = 'vaibhavnitor/backend-image'
-        DATABASE_IMAGE = 'vaibhavnitor/database-image'
+       // DATABASE_IMAGE = 'vaibhavnitor/database-image'
     }
 
     stages {
@@ -31,9 +31,9 @@ pipeline {
                     // Replace 'database' with the path to the database Dockerfile
              //       sh 'docker build -t ${DATABASE_IMAGE}:latest .'
                //     sh 'docker run -d -p 1433:1433 ${DATABASE_IMAGE}:latest'
-                }
-            }
-        }
+           //     }
+         //   }
+       // }
 
         stage('Build Backend Docker Image') {
             steps {
@@ -66,7 +66,7 @@ pipeline {
                 // Push the Docker images
                 sh 'docker push ${FRONTEND_IMAGE}:latest'
                 sh 'docker push ${BACKEND_IMAGE}:latest'
-                sh 'docker push ${DATABASE_IMAGE}:latest'
+               // sh 'docker push ${DATABASE_IMAGE}:latest'
             }
         }
     }

@@ -1,3 +1,3 @@
 export const environment = {
   production: true,
-  baseServerUrl:'54.205.21.159:81'};
+  baseServerUrl:'BACKEND_IP:81'};

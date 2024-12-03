@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	tools{
+        jdk 'jdk'
+        nodejs 'node'
+    }
 
 	triggers {
         githubPush() // Trigger the pipeline when a push event occurs
@@ -9,13 +13,41 @@ pipeline {
         FRONTEND_IMAGE = 'vaibhavnitor/frontend-image'
         BACKEND_IMAGE = 'vaibhavnitor/backend-image'
         DATABASE_IMAGE = 'vaibhavnitor/database-image'
+	SCANNER_HOME=tool 'sonar-scanner'   
     }
 
     stages {
         stage('Checkout from Git'){
             steps{
                 git branch: 'test_secret_sonar', url: 'https://github.com/C2-84177-Assignments/Angular-dotnet-SQL.git'
-        }    }
+        }   
+     }
+	    stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=POC \
+                    -Dsonar.projectKey=POC '''
+                }
+            }
+        }
+	    stage("quality gate"){
+           steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar' 
+                }
+            } 
+        }
+	    stage('Install Dependencies') {
+            steps {
+                sh "npm install"
+            }
+        }
+	    stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
 
         stage('Build Frontend Docker Image') {
             steps {
@@ -43,13 +75,13 @@ pipeline {
                 }
             }
         }
-		//stage("TRIVY"){
-          //  steps{
-            //    sh "trivy image ${FRONTEND_IMAGE}:latest "
-			//	sh "trivy image ${BACKEND_IMAGE}:latest "
-			//	sh "trivy image ${DATABASE_IMAGE}:latest "
-            //}
-        //}
+		stage("TRIVY"){
+           steps{
+            sh "trivy image ${FRONTEND_IMAGE}:latest "
+			sh "trivy image ${BACKEND_IMAGE}:latest "
+			sh "trivy image ${DATABASE_IMAGE}:latest "
+            }
+        }
         stage('deploy to container'){
             steps{
                 script{

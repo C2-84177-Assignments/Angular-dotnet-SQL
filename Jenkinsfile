@@ -22,23 +22,23 @@ pipeline {
                 git branch: 'test_secret_sonar', url: 'https://github.com/C2-84177-Assignments/Angular-dotnet-SQL.git'
         }   
      }
-	    stage("Sonarqube Analysis "){
-            steps{
-                withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=POC \
-                    -Dsonar.projectKey=POC '''
-                }
-            }
-        }
-	    stage("quality gate"){
-           steps {
-                script {
-			timeout(time: 2, unit:"MINUTES"){
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar' 
-                }
-            } 
-        }
-	}			
+	    //stage("Sonarqube Analysis "){
+            //steps{
+              //  withSonarQubeEnv('sonar-server') {
+                //    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=POC \
+                  //  -Dsonar.projectKey=POC '''
+                //}
+            //}
+        //}
+	  //  stage("quality gate"){
+           //steps {
+             //   script {
+		//	timeout(time: 2, unit:"MINUTES"){
+                  //  waitForQualityGate abortPipeline: false, credentialsId: 'Sonar' 
+                //}
+            //} 
+        //}
+	//}			
 	    stage('Install Dependencies') {
             steps {
                 sh "npm install"

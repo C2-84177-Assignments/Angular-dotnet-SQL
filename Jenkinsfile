@@ -17,11 +17,16 @@ pipeline {
     }
 
     stages {
-        stage('Checkout from Git'){
+        stage('Checkout from Git')
             steps{
                 git branch: 'test_secret_sonar', url: 'https://github.com/C2-84177-Assignments/Angular-dotnet-SQL.git'
         }   
-     }
+    }
+	stage('Install Dependencies') {
+            steps {
+                sh "npm install"
+            }
+        }
 	    stage('OWASP FS SCAN') {
             steps {
                 dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'

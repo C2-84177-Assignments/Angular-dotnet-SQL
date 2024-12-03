@@ -25,12 +25,12 @@ pipeline {
                 }
             }
         }
-        stage('Build Database Docker Image') {
-            steps {
-                script {
+       // stage('Build Database Docker Image') {
+         //   steps {
+           //     script {
                     // Replace 'database' with the path to the database Dockerfile
-                    sh 'docker build -t ${DATABASE_IMAGE}:latest .'
-                    sh 'docker run -d -p 1433:1433 ${DATABASE_IMAGE}:latest'
+             //       sh 'docker build -t ${DATABASE_IMAGE}:latest .'
+               //     sh 'docker run -d -p 1433:1433 ${DATABASE_IMAGE}:latest'
                 }
             }
         }

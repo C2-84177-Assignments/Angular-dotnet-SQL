@@ -13,7 +13,7 @@ pipeline {
         FRONTEND_IMAGE = 'vaibhavnitor/frontend-image'
         BACKEND_IMAGE = 'vaibhavnitor/backend-image'
         DATABASE_IMAGE = 'vaibhavnitor/database-image'
-	SCANNER_HOME=tool 'sonar-scanner'   
+	//SCANNER_HOME=tool 'sonar-scanner'   
     }
 
     stages {
@@ -39,11 +39,11 @@ pipeline {
             //} 
         //}
 	//}			
-	    stage('Install Dependencies') {
-            steps {
-                sh "npm install"
-            }
-        }
+	  //  stage('Install Dependencies') {
+          //  steps {
+          //      sh "npm install"
+          //  }
+      //  }
 	    stage('OWASP FS SCAN') {
             steps {
                 dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'

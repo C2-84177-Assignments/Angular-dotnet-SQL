@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dotnet-backend
+  template:
+    metadata:
+      labels:
+        app: dotnet-backend
+    spec:
+      containers:
+        - name: dotnet-backend
+          image: vaibhavnitor/backend-image
+          ports:
+            - containerPort: 81

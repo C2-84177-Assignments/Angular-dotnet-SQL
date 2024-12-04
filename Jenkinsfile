@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout from Git'){
             steps{
-                git branch: 'test_secret', url: 'https://github.com/C2-84177-Assignments/Angular-dotnet-SQL.git'
+                git branch: 'main', url: 'https://github.com/C2-84177-Assignments/Angular-dotnet-SQL.git'
         }    }
 
         stage('Build Frontend Docker Image') {

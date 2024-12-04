@@ -33,7 +33,7 @@ pipeline {
                     sh 'docker run -d -p 1433:1433 ${DATABASE_IMAGE}:latest'
                 }
             }
-        }
+	}
 
         stage('Build Backend Docker Image') {
             steps {

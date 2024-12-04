@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricEquipmentDotNetCoreProject", "ElectricEquipmentDotNetCoreAPI\ElectricEquipmentDotNetCoreProject.csproj", "{8AF083B9-5DC3-45F1-A25F-60619B871961}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AF083B9-5DC3-45F1-A25F-60619B871961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF083B9-5DC3-45F1-A25F-60619B871961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF083B9-5DC3-45F1-A25F-60619B871961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF083B9-5DC3-45F1-A25F-60619B871961}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2916E9B9-8E0C-44CC-9C0A-2F338BF89E8E}
+	EndGlobalSection
+EndGlobal

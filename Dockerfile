@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/mssql/server:latest
  
 # Set environment variables for SQL
 ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD=vaibhavchavan
+ENV SA_PASSWORD=DB_PASSWORD
  
 EXPOSE 1433
 

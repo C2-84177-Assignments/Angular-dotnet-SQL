@@ -1,42 +1,44 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
+  name: database-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: database
   template:
     metadata:
       labels:
-        app: backend
+        app: database
     spec:
       containers:
-      - name: backend
-        image: vaibhavnitor/backend-image:latest
+      - name: database
+        image: vaibhavnitor/database-image:latest
         ports:
-        - containerPort: 80
+        - containerPort: 1433
         resources:
           requests:
             cpu: 100m
-            memory: 128Mi
+            memory: 256Mi
           limits:
             cpu: 250m
-            memory: 256Mi
+            memory: 512Mi
 
 
 
------
+
+
+------
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: database-service
 spec:
   type: ClusterIP
   selector:
-    app: backend
+    app: database
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 1433
+      targetPort: 1433

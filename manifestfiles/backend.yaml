@@ -22,7 +22,7 @@ spec:
         - containerPort: 1433  # Exposing port for SQL Server
         env:
         - name: DATABASE_HOST
-          value: "managedb.cnk0u26aswzz.us-east-1.rds.amazonaws.com"  # Replace with actual host
+          value: "poc.cnk0u26aswzz.us-east-1.rds.amazonaws.com"  # Replace with actual host
         - name: DATABASE_PORT
           value: "1433"  # Replace with the actual database port if different
         - name: DATABASE_NAME

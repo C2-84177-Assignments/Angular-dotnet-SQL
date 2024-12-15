@@ -26,7 +26,7 @@ spec:
         - name: DATABASE_PORT
           value: "1433"  # Replace with the actual database port if different
         - name: DATABASE_NAME
-          value: "managedb"  # Replace with your database name
+          value: "poc"  # Replace with your database name
         - name: DATABASE_USER
           valueFrom:
             secretKeyRef:

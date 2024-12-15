@@ -20,7 +20,7 @@ WORKDIR /app
 
 COPY --from=build /app/out .
 
-EXPOSE 80
+EXPOSE 81
 EXPOSE 443
 # Set the entry point for the container
 ENTRYPOINT ["dotnet", "ElectricEquipmentDotNetCoreProject.dll"]

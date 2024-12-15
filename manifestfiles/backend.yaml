@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: vaibhavnitor/managedb-backend-image:latest
+        ports:
+        - containerPort: 81
+        - containerPort: 1433  # Exposing port for SQL Server
+        env:
+        - name: DATABASE_HOST
+          value: "managedb.cnk0u26aswzz.us-east-1.rds.amazonaws.com"  # Replace with actual host
+        - name: DATABASE_PORT
+          value: "1433"  # Replace with the actual database port if different
+        - name: DATABASE_NAME
+          value: "managedb"  # Replace with your database name
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: database-credentials
+              key: DATABASE_USER
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database-credentials
+              key: DATABASE_PASSWORD
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "1Gi"
+          limits:
+            cpu: "250m"
+            memory: "1Gi"
+        readinessProbe:
+          exec:
+            command:
+              - ls
+          initialDelaySeconds: 60  # Wait for 60 seconds before checking
+          periodSeconds: 10  # Check every 10 seconds
+        livenessProbe:
+          exec:
+            command:
+              - ls
+          initialDelaySeconds: 90  # Wait for 90 seconds before checking
+          periodSeconds: 20  # Check every 20 seconds
+

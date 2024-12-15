@@ -21,7 +21,7 @@ namespace ElectricEquipmentDotNetCoreProject
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-		    .UseUrls("http://*:81);
+		    .UseUrls("http://*:81");
                 });
     }
 }

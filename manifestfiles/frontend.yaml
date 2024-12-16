@@ -22,7 +22,7 @@ spec:
         - containerPort: 80
         env:
         - name: BACKEND_URL
-          value: "http://backend-service:8080"  # URL for the backend service
+          value: "http://backend-service:81"  # URL for the backend service
         resources:
           requests:
             cpu: "100m"
